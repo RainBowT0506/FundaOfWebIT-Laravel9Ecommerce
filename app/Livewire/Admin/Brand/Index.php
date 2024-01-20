@@ -12,7 +12,7 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $name, $slug, $status;
+    public $brand_id, $name, $slug, $status;
 
     public function rules()
     {
@@ -23,8 +23,23 @@ class Index extends Component
         ];
     }
 
+    public function setEditBrand($brand_id)
+    {
+        $this->brand_id = $brand_id;
+        $brand = Brand::findOrFail($brand_id);
+        $this->name = $brand->name;
+        $this->slug = $brand->slug;
+        $this->status = $brand->status;
+    }
+
+    public function setDeleteBrand($brand_id)
+    {
+        $this->brand_id = $brand_id;
+    }
+
     public function resetInput()
     {
+        $this->brand_id = null;
         $this->name = null;
         $this->slug = null;
         $this->status = null;
@@ -32,7 +47,6 @@ class Index extends Component
 
     public function storeBrand()
     {
-        Log::info("storeBrand");
         $validatedData = $this->validate();
         Brand::create([
             'name' => $this->name,
@@ -40,6 +54,37 @@ class Index extends Component
             'status' => $this->status == true ? '1' : '0',
         ]);
         session()->flash('message', 'Brand Added Successfully');
+        $this->resetInput();
+        $this->dispatch('close-modal');
+    }
+
+    public function destoryBrand()
+    {
+        Brand::findOrFail($this->brand_id)->delete();
+        session()->flash('message', 'Brand Deleted Successfully');
+        $this->resetInput();
+        $this->dispatch('close-modal');
+    }
+
+    public function closeModal()
+    {
+        $this->resetInput();
+    }
+
+    public function openModal()
+    {
+        $this->resetInput();
+    }
+
+    public function updateBrand()
+    {
+        $validatedData = $this->validate();
+        Brand::findOrFail($this->brandId)->update([
+            'name' => $this->name,
+            'slug' => Str::slug($this->slug),
+            'status' => $this->status == true ? '1' : '0',
+        ]);
+        session()->flash('message', 'Brand Updated Successfully');
         $this->resetInput();
         $this->dispatch('close-modal');
     }
