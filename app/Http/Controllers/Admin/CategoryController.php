@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryFormRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\File;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
