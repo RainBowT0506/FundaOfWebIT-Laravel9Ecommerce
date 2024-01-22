@@ -134,7 +134,7 @@ class ProductController extends Controller
 
 
 
-    public function destoryImage(int $product_image_id)
+    public function destroyImage(int $product_image_id)
     {
         Log::info('DestoryImage');
         $productImage = ProductImage::findOrFail($product_image_id);
@@ -147,7 +147,7 @@ class ProductController extends Controller
         return redirect()->back()->with('message', 'Product Image Deleted');
     }
 
-    public function destory($product_id)
+    public function destroy($product_id)
     {
         $product = Product::findOrFail($product_id);
 

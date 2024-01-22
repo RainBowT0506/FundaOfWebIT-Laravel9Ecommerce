@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -44,10 +45,19 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('/product', 'store');
         Route::get('/product/{product}/edit', 'edit');
         Route::put('/product/{product}', 'update');
-        Route::get('/product/{product_id}/delete', 'destory');
+        Route::get('/product/{product_id}/delete', 'destroy');
 
-        Route::get('product-image/{product_image_id}/delete', 'destoryImage');
+        Route::get('product-image/{product_image_id}/delete', 'destroyImage');
     });
 
     Route::get('brands', App\Livewire\Admin\Brand\Index::class);
+
+    Route::controller(ColorController::class)->group(function () {
+        Route::get('/color', 'index');
+        Route::get('/color/create', 'create');
+        Route::post('/color/store ', 'store');
+        Route::get('/color/{color}/edit', 'edit');
+        Route::put('/color/{color_id}', 'update');
+        Route::get('/color/{color_id}/delete', 'destroy');
+    });
 });
