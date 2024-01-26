@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\ProductColor;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -75,7 +76,7 @@ class ProductController extends Controller
                 $product->productColors()->create([
                     'product_id' => $product->id,
                     'color_id' => $color,
-                    'quantity' => $product->color_quantity[$key] ?? 0
+                    'quantity' => $request->color_quantity[$key] ?? 0
                 ]);
             }
         }
@@ -88,8 +89,10 @@ class ProductController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $product = Product::findOrFail($product_id);
+        $product_color = $product->productColors->pluck('color_id')->toArray();
+        $colors = Color::whereNotIn('id', $product_color)->get();
 
-        return view('admin.product.edit', compact('categories', 'brands', 'product'));
+        return view('admin.product.edit', compact('categories', 'brands', 'product', 'colors'));
     }
 
     public function update(ProductFormRequest $request, int $product_id)
@@ -174,5 +177,24 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->back()->with('message', 'Product Deleted with all its image');
+    }
+
+    public function updateProdColorQty(Request $request, $prod_color_id)
+    {
+        Log::info("updateProdColorQty");
+        $productColorData = Product::findOrFail($request->product_id)
+            ->productColors()->where('id', $prod_color_id)->first();
+
+        $productColorData->update(['quantity' => $request->qty]);
+
+        return response()->json(['message' => 'Product Color Qty Updated']);
+    }
+
+    public function deleteProdColor($prod_color_id)
+    {
+        $prodColor = ProductColor::findOrFail($prod_color_id);
+        $prodColor->delete();
+
+        return response()->json(['message' => 'Product Color Deleted']);
     }
 }
