@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +56,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('brands', App\Livewire\Admin\Brand\Index::class);
 
+    // Color
     Route::controller(ColorController::class)->group(function () {
         Route::get('/color', 'index');
         Route::get('/color/create', 'create');
@@ -62,5 +64,11 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/color/{color}/edit', 'edit');
         Route::put('/color/{color_id}', 'update');
         Route::get('/color/{color_id}/delete', 'destroy');
+    });
+
+    Route::controller(SliderController::class)->group(function () {
+        Route::get('slider', 'index');
+        Route::get('slider/create', 'create');
+        Route::post('slider/store', 'store');
     });
 });

@@ -46,36 +46,25 @@
                 </ul>
             </div>
         </li>
+
+        {{-- Brande --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/brands') }}">
                 <i class="mdi mdi-view-headline menu-icon"></i>
                 <span class="menu-title">Brands</span>
             </a>
         </li>
+
+        {{-- Color --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/color') }}">
                 <i class="mdi mdi-view-headline menu-icon"></i>
                 <span class="menu-title">Colors</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-                <i class="mdi mdi-chart-pie menu-icon"></i>
-                <span class="menu-title">Charts</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-                <i class="mdi mdi-grid-large menu-icon"></i>
-                <span class="menu-title">Tables</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
-                <i class="mdi mdi-emoticon menu-icon"></i>
-                <span class="menu-title">Icons</span>
-            </a>
-        </li>
+
+
+        {{-- User --}}
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="mdi mdi-account menu-icon"></i>
@@ -93,10 +82,20 @@
                 </ul>
             </div>
         </li>
+
+        {{-- Home Slider --}}
         <li class="nav-item">
-            <a class="nav-link" href="documentation/documentation.html">
-                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                <span class="menu-title">Documentation</span>
+            <a class="nav-link" href="{{ url('admin/slider') }}">
+                <i class="mdi mdi-view-carousel menu-icon"></i>
+                <span class="menu-title">Home Slider</span>
+            </a>
+        </li>
+
+        {{-- Site Settings --}}
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="mdi mdi-settings menu-icon"></i>
+                <span class="menu-title">Site Settings</span>
             </a>
         </li>
     </ul>
