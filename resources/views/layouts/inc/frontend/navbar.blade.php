@@ -89,31 +89,31 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{{url('/')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">All Categories</a>
+                        <a class="nav-link" href="{{url('/collections')}}">All Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">New Arrivals</a>
+                        <a class="nav-link" href="{{url('/new-arrivals')}}">New Arrivals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Featured Products</a>
+                        <a class="nav-link" href="{{url('/')}}">Featured Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Electronics</a>
+                        <a class="nav-link" href="{{url('/')}}">Electronics</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Fashions</a>
+                        <a class="nav-link" href="{{url('/')}}">Fashions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Accessories</a>
+                        <a class="nav-link" href="{{url('/')}}">Accessories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{{url('/')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Appliances</a>
+                        <a class="nav-link" href="{{url('/')}}">Appliances</a>
                     </li>
                 </ul>
             </div>
